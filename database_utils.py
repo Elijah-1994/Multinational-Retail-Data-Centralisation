@@ -1,5 +1,5 @@
 #%%
 
-class DataConnector:
+class DatabaseConnector:
         def __init__(self,):
             return
