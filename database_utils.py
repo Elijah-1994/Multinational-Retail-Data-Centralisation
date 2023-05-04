@@ -33,14 +33,15 @@ class DatabaseConnector:
             table_name = self.list_db_tables()
             legacy_users = pd.read_sql_table(table_name,engine)
             legacy_users = legacy_users.head(10)
-            return legacy_users
             print(legacy_users)
+            return legacy_users
+
 
 
 if __name__ == '__main__':
-    object = DatabaseConnector()
-    object_1 = object.read_db_creds('db_creds.yaml')
-    object_2 = object.init_db_engine()
-    object_3 = object.list_db_tables()
-    object_4 = object.read_rds_database(object_2,object_3)
+    DatabaseConnection = DatabaseConnector()
+    Open_yaml = DatabaseConnection.read_db_creds('db_creds.yaml')
+    connect_to_database = DatabaseConnection.init_db_engine()
+    list_tables = DatabaseConnection.list_db_tables()
+    creates_data_frame = DatabaseConnection.read_rds_database(connect_to_database,list_tables)
     
