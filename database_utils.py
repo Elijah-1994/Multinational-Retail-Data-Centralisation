@@ -1,7 +1,10 @@
 #%%
+
 class DatabaseConnector:
-        def read_db_creds(self,):
+        def upload_to_db(self,):
             return
 
 
     
+if __name__ == '__main__':
+    DatabaseConnection = DatabaseConnector()
