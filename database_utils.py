@@ -35,6 +35,9 @@ class DatabaseConnector:
             legacy_users = legacy_users.head(10)
             print(legacy_users)
             return legacy_users
+        
+        def upload_to_db(self,df,table_name):
+            return
 
 
 
@@ -44,4 +47,5 @@ if __name__ == '__main__':
     connect_to_database = DatabaseConnection.init_db_engine()
     list_tables = DatabaseConnection.list_db_tables()
     creates_data_frame = DatabaseConnection.read_rds_database(connect_to_database,list_tables)
+    upload_to_database = DatabaseConnection.upload_to_db(creates_data_frame,list_tables)
     
