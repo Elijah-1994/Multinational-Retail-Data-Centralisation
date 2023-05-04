@@ -4,7 +4,8 @@ import yaml
 from sqlalchemy import create_engine
 from sqlalchemy import inspect, text
 import pandas as pd
-class DatabaseConnector:
+
+class DataExtractor:
         def read_db_creds(self,yaml_file):
             with open(yaml_file, 'r') as f:
                 credentials_dict = yaml.safe_load(f)
@@ -33,17 +34,15 @@ class DatabaseConnector:
             engine = self.init_db_engine()
             table_name = self.list_db_tables()
             legacy_users = pd.read_sql_table(table_name,engine)
-            legacy_users = legacy_users.head(10)
-            print(legacy_users)
             return legacy_users
         
         def upload_to_db(self,df,table_name):
             return
 
 if __name__ == '__main__':
-    DatabaseConnection = DatabaseConnector()
-    Open_yaml = DatabaseConnection.read_db_creds('db_creds.yaml')
-    connect_to_database = DatabaseConnection.init_db_engine()
-    list_tables = DatabaseConnection.list_db_tables()
-    creates_data_frame = DatabaseConnection.read_rds_database(connect_to_database,list_tables)
-    upload_to_database = DatabaseConnection.upload_to_db(creates_data_frame,list_tables)
+    DatabaseExtraction = DataExtractor()
+    Open_yaml = DatabaseExtraction.read_db_creds('db_creds.yaml')
+    connect_to_database = DatabaseExtraction.init_db_engine()
+    list_tables = DatabaseExtraction.list_db_tables()
+    creates_data_frame = DatabaseExtraction.read_rds_database(connect_to_database,list_tables)
+    upload_to_database = DatabaseExtraction.upload_to_db(creates_data_frame,list_tables)
